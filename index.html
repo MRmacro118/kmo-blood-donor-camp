@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blood Donation Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ---------- Base ---------- */
+body {
+  margin: 0;
+  background: #F6F0D7;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
+  color: #2f2f2f;
+  line-height: 1.6;
+}
+
+/* ---------- Layout ---------- */
+.page {
+  max-width: 520px;
+  margin: 60px auto 30px;
+  padding: 0 18px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b6b6b;
+  margin-bottom: 32px;
+}
+
+/* ---------- Form Area ---------- */
+.form-area {
+  background: #FDFBF4;
+  padding: 28px 26px;
+  border-radius: 14px;
+}
+
+/* ---------- Labels ---------- */
+label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ---------- Inputs & Selects (FIXED) ---------- */
+input,
+select {
+  width: 100%;
+  height: 48px;                 /* SAME HEIGHT */
+  padding: 0 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  background: #ffffff;
+  box-sizing: border-box;       /* CRITICAL */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #9CAB84;
+}
+
+/* ---------- Dropdown Arrow ---------- */
+select {
+  padding-right: 36px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #666 50%),
+    linear-gradient(135deg, #666 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 21px,
+    calc(100% - 12px) 21px;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* ---------- Button ---------- */
+button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #9CAB84;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #89986D;
+}
+
+/* ---------- Message ---------- */
+#successMsg {
+  text-align: center;
+  margin-top: 16px;
+  color: #4f7a4f;
+  font-size: 15px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 40px;
+  padding: 18px 0;
+  background: #EAE6D2;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+footer a {
+  margin: 0 6px;
+  color: #25D366;
+  text-decoration: none;
+  font-weight: 500;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+  <h1>Blood Donation Camp</h1>
+  <div class="subtitle">
+    Please fill the form to register as a donor
+  </div>
+
+  <div class="form-area">
+    <form id="donorForm">
+      <label for="name">Full Name</label>
+      <input id="name" required>
+
+      <label for="phone">Phone Number</label>
+      <input id="phone" placeholder="10-digit number" required>
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+
+      <label for="bloodGroup">Blood Group</label>
+      <select id="bloodGroup" required>
+        <option value="">Select</option>
+        <option>A+</option><option>A-</option>
+        <option>B+</option><option>B-</option>
+        <option>O+</option><option>O-</option>
+        <option>AB+</option><option>AB-</option>
+      </select>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div id="successMsg"></div>
+  </div>
+</div>
+
+<footer>
+  For any enquiry:
+  <a href="https://wa.me/919526219005">WhatsApp Admin 1</a> |
+  <a href="https://wa.me/917510903353">WhatsApp Admin 2</a>
+</footer>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  background: #F6F0D7;
+  font-family: system-ui;
+  color: #2f2f2f;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+select, button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+button {
+  background: #9CAB84;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #89986D;
+}
+
+.table-wrap {
+  background: #FDFBF4;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+footer {
+  margin-top: 50px;
+  padding: 18px 0;
+  background: #EAE6D2;
+  text-align: center;
+  font-size: 14px;
+}
+
+footer a {
+  color: #25D366;
+  margin: 0 6px;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <h2>Registered Donors</h2>
+
+  <div class="controls">
+    <select id="filter">
+      <option value="ALL">All Blood Groups</option>
+      <option>A+</option><option>A-</option>
+      <option>B+</option><option>B-</option>
+      <option>O+</option><option>O-</option>
+      <option>AB+</option><option>AB-</option>
+    </select>
+
+    <button onclick="applyFilter()">Filter</button>
+    <button onclick="downloadExcel()">Download Excel</button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Gender</th>
+          <th>Blood</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  Contact Admin:
+  <a href="https://wa.me/919526219005">WhatsApp 1</a> |
+  <a href="https://wa.me/917510903353">WhatsApp 2</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script type="module" src="firebase.js"></script>
+<script type="module" src="admin.js"></script>
+</body>
+</html>
