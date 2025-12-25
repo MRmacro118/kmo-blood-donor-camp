@@ -1,0 +1,1 @@
+# kmo-blood-donor-camp
