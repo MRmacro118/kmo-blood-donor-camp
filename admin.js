@@ -9,7 +9,6 @@ import {
 let allDonors = [];
 let currentView = [];
 
-/* ---------- Load Data ---------- */
 async function loadDonors() {
   const q = query(collection(db, "donors"), orderBy("time", "desc"));
   const snapshot = await getDocs(q);
@@ -29,7 +28,6 @@ async function loadDonors() {
   renderTable(currentView);
 }
 
-/* ---------- Render Table WITH SERIAL ---------- */
 function renderTable(data) {
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
@@ -53,7 +51,6 @@ function renderTable(data) {
   });
 }
 
-/* ---------- Filter ---------- */
 window.applyFilter = function () {
   const selected = document.getElementById("filter").value;
 
@@ -66,7 +63,6 @@ window.applyFilter = function () {
   renderTable(currentView);
 };
 
-/* ---------- Download Excel (WITH SERIAL) ---------- */
 window.downloadExcel = function () {
   if (currentView.length === 0) {
     alert("No data to download");
@@ -89,5 +85,4 @@ window.downloadExcel = function () {
   XLSX.writeFile(wb, "blood_donors.xlsx");
 };
 
-/* ---------- Init ---------- */
 loadDonors();
