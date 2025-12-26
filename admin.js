@@ -9,6 +9,7 @@ import {
 let allDonors = [];
 let currentView = [];
 
+/* ---------- Load Data ---------- */
 async function loadDonors() {
   const q = query(collection(db, "donors"), orderBy("time", "desc"));
   const snapshot = await getDocs(q);
@@ -28,18 +29,20 @@ async function loadDonors() {
   renderTable(currentView);
 }
 
+/* ---------- Render Table WITH SERIAL ---------- */
 function renderTable(data) {
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
 
   if (data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="5">No data found</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6">No data found</td></tr>`;
     return;
   }
 
-  data.forEach(d => {
+  data.forEach((d, index) => {
     const row = document.createElement("tr");
     row.innerHTML = `
+      <td>${index + 1}</td>
       <td>${d.name}</td>
       <td>${d.phone}</td>
       <td>${d.gender}</td>
@@ -50,6 +53,7 @@ function renderTable(data) {
   });
 }
 
+/* ---------- Filter ---------- */
 window.applyFilter = function () {
   const selected = document.getElementById("filter").value;
 
@@ -62,17 +66,28 @@ window.applyFilter = function () {
   renderTable(currentView);
 };
 
+/* ---------- Download Excel (WITH SERIAL) ---------- */
 window.downloadExcel = function () {
   if (currentView.length === 0) {
     alert("No data to download");
     return;
   }
 
-  const ws = XLSX.utils.json_to_sheet(currentView);
+  const excelData = currentView.map((d, i) => ({
+    "S.No": i + 1,
+    "Name": d.name,
+    "Phone": d.phone,
+    "Gender": d.gender,
+    "Blood Group": d.bloodGroup,
+    "Time": d.time
+  }));
+
+  const ws = XLSX.utils.json_to_sheet(excelData);
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Donors");
 
   XLSX.writeFile(wb, "blood_donors.xlsx");
 };
 
+/* ---------- Init ---------- */
 loadDonors();
